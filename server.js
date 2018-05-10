@@ -6,6 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var expresshbs = require('express-handlebars');
+var morgan = require('morgan');
 
 // Sets up the Express App
 // =============================================================
@@ -17,13 +19,18 @@ var db = require("./models");
 
 // Sets up the Express app to handle data parsing
 
+// middleware
+app.use(morgan('dev'))
+app.engine('hbs', expresshbs({defaultLayout: 'main', extname: '.hbs'}))
+app.set('view engine', 'hbs')
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
 // =============================================================
