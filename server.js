@@ -8,6 +8,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var expresshbs = require('express-handlebars');
 var morgan = require('morgan');
+var path = require("path");
 
 // Sets up the Express App
 // =============================================================
